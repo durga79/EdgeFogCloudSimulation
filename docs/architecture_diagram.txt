@@ -1,0 +1,29 @@
++------------------+       +------------------+       +------------------+       +------------------+
+|                  |       |                  |       |                  |       |                  |
+|   IoT Devices    | ----> |    Edge Nodes    | ----> |    Fog Nodes     | ----> |  Cloud Data     |
+|                  |       |                  |       |                  |       |  Center         |
++------------------+       +------------------+       +------------------+       +------------------+
+      |                           |                          |                          |
+      |                           |                          |                          |
+      v                           v                          v                          v
++------------------+       +------------------+       +------------------+       +------------------+
+|  Data Generation |       | Data Filtering   |       | Data Aggregation |       | Complex         |
+|  - Sensor data   |       | - Remove noise   |       | - Combine data   |       | Analytics       |
+|  - Images        |       | - Compress       |       | - Intermediate   |       | - Machine       |
+|  - Video         |       | - Local          |       |   processing     |       |   learning      |
+|  - Audio         |       |   processing     |       | - Temporal       |       | - Long-term     |
+|                  |       |                  |       |   analysis       |       |   storage       |
++------------------+       +------------------+       +------------------+       +------------------+
+
+Communication:        Wireless               High Bandwidth          Very High Bandwidth
+                   (WiFi, BLE, etc.)      (Ethernet, 5G, etc.)     (Fiber, 5G, etc.)
+
+Data Volume:          High                    Medium                     Low
+                 (Raw data)              (Filtered data)           (Aggregated data)
+
+Latency:              Low                     Medium                    High
+                 (Local)                 (Regional)                (Global)
+
+Energy Usage:         Low                     Medium                    High
+                 (Battery                (Limited                 (Unlimited
+                  constrained)            resources)                resources)

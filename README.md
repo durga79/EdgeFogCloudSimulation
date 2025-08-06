@@ -1,60 +1,62 @@
-# Edge-Fog-Cloud Architecture for IoT Data Processing
+# Edge-Fog-Cloud Simulation with Enhanced Statistics
 
-This project implements a proof-of-concept simulation based on the IEEE paper "Performance Analysis of Edge-Fog-Cloud Architectures in the Internet of Things" (2020/2021). The implementation demonstrates a three-tier architecture for processing IoT data with efficient distribution of computational tasks across edge devices, fog nodes, and cloud infrastructure.
+This project implements a proof-of-concept simulation based on the IEEE paper "Performance Analysis of Edge-Fog-Cloud Architectures in the Internet of Things" (2020/2021). The implementation demonstrates a three-tier architecture for processing IoT data with efficient distribution of computational tasks across edge devices, fog nodes, and cloud infrastructure. The simulation provides comprehensive statistics on resource utilization, energy consumption, network traffic, response times, and cost analysis.
 
 ## Project Overview
 
-This simulation models:
-- IoT devices generating data at the network edge
-- Edge nodes performing initial data filtering and processing
-- Fog nodes aggregating and processing intermediate data
-- Cloud servers handling complex analytics and long-term storage
+This simulation implements the key concepts from the IEEE paper "Performance Analysis of Edge-Fog-Cloud Architectures in the Internet of Things" (2020/2021) with the following features:
 
-The project focuses on demonstrating how this hierarchical approach optimizes:
-- Latency reduction through edge processing
-- Bandwidth efficiency through data filtering
-- Computational load distribution across the network
-- Energy efficiency in IoT applications
+- Three-tier hierarchical architecture with Edge, Fog, and Cloud layers
+- Separate datacenters with different resource capacities for each layer
+- Dedicated brokers for each layer to manage resource allocation and scheduling
+- Cloudlet distribution across all three layers with appropriate VM assignments
+- Guaranteed 100% cloudlet completion through optimized resource allocation
+- VM destruction delays to ensure proper resource cleanup
+
+The project analyzes performance metrics across the three layers including:
+- Processing distribution and completion rates
+- Cost analysis with detailed breakdown by resource type
+- Energy consumption estimates
+- Network traffic analysis
+- Response time and latency measurements
 
 ## Key Features
 
 ## Running the Simulation
 
-This project provides several scripts to run the simulation with different resource configurations:
+This project provides simple scripts to run the optimized Edge-Fog-Cloud simulation with enhanced statistics:
 
 ### For Linux/Mac:
 
-- `run_full_simulation.sh`: Runs the complete Edge-Fog-Cloud simulation with full resources
-- `run_lightweight_simulation.sh`: Runs a minimal version of the simulation with reduced resource usage
+```bash
+./run_simulation.sh
+```
 
 ### For Windows:
 
-- `run_full_simulation.bat`: Runs the complete Edge-Fog-Cloud simulation with full resources
-- `run_lightweight_simulation.bat`: Runs a minimal version of the simulation with reduced resource usage
+```batch
+run_simulation.bat
+```
 
 ### Requirements:
 
 - Java 11 or higher
 - Maven 3.6 or higher
-- At least 2GB RAM for the full simulation (512MB for lightweight)
+- At least 2GB RAM (configured in the run scripts)
 
-### Adjusting Simulation Parameters:
-
-You can modify the simulation parameters in `src/main/java/org/edgefogcloud/utils/ConfigManager.java` to adjust:
-- Number of IoT devices, edge nodes, and fog nodes
-- Processing capacities and storage capabilities
-- Network bandwidth and latency
-- Energy consumption parameters
-- Cost models
+The simulation is configured with optimal parameters to ensure 100% cloudlet completion across all layers (Edge, Fog, Cloud) with realistic resource allocation, VM destruction delays, and scheduling.
 
 ## Key Features
 
-- Simulation of IoT devices with configurable data generation patterns
-- Edge processing with customizable filtering algorithms
-- Fog layer for intermediate data aggregation and processing
-- Cloud computing simulation for complex analytics
-- Performance metrics collection and visualization
-- Wireless communication simulation between layers (WiFi, BLE, etc.)
+As described in the IEEE paper "Performance Analysis of Edge-Fog-Cloud Architectures in the Internet of Things", this simulation implements:
+
+- **Multi-tier Architecture**: Complete Edge-Fog-Cloud hierarchy with distinct resource profiles
+- **Performance Analysis**: Comprehensive metrics collection and analysis across all three layers
+- **Resource Management**: Optimized VM and cloudlet allocation with guaranteed task completion
+- **Cost Modeling**: Detailed cost calculations based on resource usage (CPU, memory, storage, bandwidth)
+- **Energy Efficiency**: Energy consumption estimates for each layer of the architecture
+- **Network Performance**: Traffic analysis and latency measurements between layers
+- **Response Time Analysis**: Detailed statistics on processing times across the architecture
 
 ## Requirements
 
@@ -64,40 +66,41 @@ You can modify the simulation parameters in `src/main/java/org/edgefogcloud/util
 ## Setup Instructions
 
 1. Ensure Java 11+ and Maven are installed on your system
-2. Navigate to the project directory:
+2. Clone or download this repository
+3. Navigate to the project directory:
    ```
    cd /path/to/EdgeFogCloudSimulation
    ```
-3. Install dependencies:
+4. Install dependencies:
    ```
    mvn clean install
    ```
-4. Run the simulation using the provided script:
+5. Run the simulation using the provided script:
    ```
+   # For Linux/Mac
    ./run_simulation.sh
+   
+   # For Windows
+   run_simulation.bat
    ```
    
-   Or manually with:
-   ```
-   mvn exec:java -Dexec.mainClass="org.edgefogcloud.simulation.EdgeFogCloudSimulation"
-   ```
+   The simulation results will be saved to the `results` directory with a timestamped filename.
 
 ## Project Structure
 
 ```
 EdgeFogCloudSimulation/
 ├── src/main/java/org/edgefogcloud/
-│   ├── devices/       # IoT device simulation
-│   ├── edge/          # Edge processing logic
-│   ├── fog/           # Fog node implementation
-│   ├── cloud/         # Cloud processing
-│   ├── network/       # Network communication simulation
-│   ├── data/          # Data generation and models
-│   ├── utils/         # Utility classes
-│   └── simulation/    # Main simulation classes
+│   └── test/
+│       ├── OptimizedSimpleRunner.java       # Basic optimized simulation runner
+│       ├── OptimizedStatisticsRunner.java   # Enhanced statistics simulation runner
+│       ├── EnhancedSimulationRunner.java    # Original enhanced simulation runner
+│       └── SimulationStatistics.java        # Statistics utility class
 ├── resources/         # Configuration files
 ├── results/           # Output data and metrics
-└── docs/              # Documentation
+├── backup_scripts/    # Backup of old simulation scripts
+├── run_simulation.sh  # Main simulation script for Linux/Mac
+└── run_simulation.bat # Main simulation script for Windows
 ```
 
 ## Configuration
@@ -160,6 +163,21 @@ Additional documentation is available in the `docs/` directory:
 
 ## References
 
-This implementation is based on the paper:
+This implementation is based on the IEEE paper:
+
 "Performance Analysis of Edge-Fog-Cloud Architectures in the Internet of Things" (IEEE, 2020/2021)
-# EdgeFogCloudSimulation
+
+## Dependencies
+
+- CloudSim Plus 6.4.3
+- Java Standard Libraries
+- Maven Build System
+
+## Simulation Configuration
+
+The simulation is configured with:
+- Small cloudlet lengths and reasonable VM destruction delays to ensure cloudlet completion
+- Minimal logging with WARN level to reduce console clutter
+- JVM options set for 2GB heap, metaspace size, and G1GC for performance
+- 5-minute timeout to prevent endless runs
+- Results saved to timestamped files in the `results` directory
